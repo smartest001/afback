@@ -12,7 +12,7 @@ export async function OPTIONS() {
 export async function POST(request) {
     try {
         const origin = request.headers.get('origin');
-        const allowedOrigins = ['https://smart-lilac.vercel.app']; // Adjust to your frontend origin(s)
+        const allowedOrigins = ['https://smart-lilac.vercel.app', 'http://localhost:3000']; // Adjust to your frontend origin(s)
 
         // Check if the request origin is allowed
         if (origin && allowedOrigins.includes(origin)) {
