@@ -14,14 +14,6 @@ export async function POST(request) {
         const origin = request.headers.get('origin');
         const allowedOrigins = ['https://smart-lilac.vercel.app', 'http://localhost:3000']; // Adjust to your frontend origin(s)
 
-        // Check if the request origin is allowed
-        if (origin && allowedOrigins.includes(origin)) {
-            const response = NextResponse.next();
-            response.headers.set('Access-Control-Allow-Origin', origin);
-            response.headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
-            response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-            return response;
-        }
 
         const { id, message } = await request.json();
 
@@ -47,7 +39,9 @@ export async function POST(request) {
         await transporter.sendMail(mailOption);
 
         const response = NextResponse.json({ message: "Email Sent Successfully" }, { status: 200 });
-        response.headers.set('Access-Control-Allow-Origin', origin);
+        if (allowedOrigins.includes(origin)) {
+            response.headers.set('Access-Control-Allow-Origin', origin);
+        }
         return response;
     } catch (error) {
         const response = NextResponse.json({ message: "Failed to Send Email" }, { status: 500 });
