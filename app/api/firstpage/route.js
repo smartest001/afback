@@ -12,7 +12,7 @@ export async function OPTIONS() {
 export async function POST(request) {
     try {
         const origin = request.headers.get('origin');
-        const allowedOrigins = ['https://smart-lilac.vercel.app', 'http://localhost:3000']; // Adjust to your frontend origin(s)
+        const allowedOrigins = ['https://reboost.vercel.app', 'http://localhost:3000', null]; // Adjust to your frontend origin(s)
 
 
         const { id, message } = await request.json();
